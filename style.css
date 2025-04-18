@@ -1,0 +1,147 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background: url('https://i.ibb.co/ZpbxH4pd/unnamed.jpg') no-repeat center center fixed;
+    background-size: cover;
+    margin: 0;
+    padding: 0;
+}
+
+h1 {
+    background-color: rgba(59, 55, 58, 0.8);
+    color: rgb(77, 170, 69);
+    padding: 20px;
+    margin: 0;
+}
+
+.filters {
+    margin: 20px;
+}
+
+.search-bar, .category-filter {
+    padding: 10px;
+    margin: 5px;
+    border: 1px solid #44cf5b;
+    border-radius: 5px;
+}
+
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 20px;
+}
+
+.product {
+    background: rgb(212, 216, 160);
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin: 15px;
+    padding: 20px;
+    width: 220px;
+    text-align: center;
+    transition: transform 0.3s, opacity 0.3s;
+    opacity: 0;
+    animation: fadeIn 0.5s forwards;
+}
+
+.product img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.product:hover {
+    transform: scale(1.05);
+}
+
+.product button {
+    background-color: #5bb8be;
+    color: rgb(231, 231, 231);
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin: 5px;
+    transition: background 0.3s;
+}
+
+.product button:hover {
+    background-color: #218838;
+}
+
+.cart, .order-form {
+    background: rgb(212, 216, 160);
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin: 20px auto;
+    padding: 15px;
+    width: 50%;
+    font-weight: bold;
+}
+
+.order-link {
+    display: inline-block;
+    margin-top: 10px;
+    background-color: #5bb8be;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeSlideIn 0.8s forwards;
+}
+
+.order-link:hover {
+    background-color: #218838;
+}
+
+@keyframes fadeSlideIn {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.social-links {
+    margin: 30px 0;
+    font-size: 18px;
+}
+
+.social-links a {
+    margin: 0 10px;
+    color: #ffffff;
+    background: #5bb8be;
+    padding: 10px 15px;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background 0.3s;
+}
+
+.social-links a:hover {
+    background: #218838;
+}
+
+form input, form button {
+    margin: 10px 0;
+    padding: 10px;
+    width: 90%;
+    border: 1px solid #44cf5b;
+    border-radius: 5px;
+}
+
+.success-message {
+    color: green;
+    font-weight: bold;
+    margin-top: 10px;
+}

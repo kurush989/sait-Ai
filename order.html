@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Оформление заказа - MAZARINI</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: url('https://i.ibb.co/ZpbxH4pd/unnamed.jpg') no-repeat center center fixed;
+            background-size: cover;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+        h1 {
+            background-color: rgba(59, 55, 58, 0.8);
+            color: rgb(77, 170, 69);
+            padding: 20px;
+            margin: 0;
+        }
+        .order-container {
+            background: rgb(212, 216, 160);
+            margin: 30px auto;
+            padding: 20px;
+            width: 60%;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .cart-items {
+            text-align: left;
+            margin-bottom: 20px;
+        }
+        .cart-items div {
+            padding: 5px 0;
+        }
+        form input, form button {
+            margin: 10px 0;
+            padding: 10px;
+            width: 90%;
+            border: 1px solid #44cf5b;
+            border-radius: 5px;
+        }
+        form button {
+            background-color: #5bb8be;
+            color: white;
+            cursor: pointer;
+        }
+        form button:hover {
+            background-color: #218838;
+        }
+        .success-message {
+            color: green;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+        a.back-link {
+            display: inline-block;
+            margin-top: 20px;
+            background-color: #5bb8be;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+        }
+        a.back-link:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+    <h1>Оформление заказа</h1>
+    <div class="order-container">
+        <div class="cart-items" id="cartItems"></div>
+        <form id="orderForm">
+            <input type="text" id="name" placeholder="Ваше имя" required>
+            <input type="email" id="email" placeholder="Ваш email" required>
+            <input type="text" id="address" placeholder="Адрес доставки" required>
+            <button type="submit">Оформить заказ</button>
+        </form>
+        <div class="success-message" id="successMessage"></div>
+        <a href="index.html" class="back-link">Вернуться в магазин</a>
+    </div>
+
+    <script>
+        const cartItemsDiv = document.getElementById("cartItems");
+        let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+        if (cart.length === 0) {
+            cartItemsDiv.innerHTML = "<strong>Корзина пуста.</strong>";
+        } else {
+            let total = 0;
+            cartItemsDiv.innerHTML = "<h3>Ваш заказ:</h3>" + cart.map(item => {
+                total += item.price;
+                return `<div>${item.name} — ${item.price} руб.</div>`;
+            }).join("") + `<hr><div><strong>Итого: ${total} руб.</strong></div>`;
+        }
+
+        document.getElementById("orderForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+            const name = document.getElementById("name").value;
+            const email = document.getElementById("email").value;
+            const address = document.getElementById("address").value;
+
+            if (cart.length === 0) {
+                alert("Корзина пуста. Невозможно оформить заказ.");
+                return;
+            }
+
+            document.getElementById("successMessage").textContent = `Спасибо, ${name}! Ваш заказ оформлен.`;
+            localStorage.removeItem("cart");
+            cart = [];
+            cartItemsDiv.innerHTML = "<strong>Корзина пуста.</strong>";
+            document.getElementById("orderForm").reset();
+        });
+    </script>
+</body>
+</html>
